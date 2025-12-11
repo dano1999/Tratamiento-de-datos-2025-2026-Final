@@ -4,8 +4,10 @@
 Proyecto desarrollado para la asignatura **Tratamiento de Datos / Text Data**  
 Máster en Ingeniería de Telecomunicación (UC3M), curso 2025–2026.
 #
-**Pablo Anegon Nuñez 100472728**
+**Pablo Anegon Nuñez 100472728** 
+
 **Mateo Tode Ceballos 100537530**
+
 **Daniel Bahrami Planchuelo 100384032**
 
 
