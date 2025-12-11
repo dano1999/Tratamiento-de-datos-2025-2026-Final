@@ -324,7 +324,7 @@ jupyter notebook Knn_3_modelos_vectorizacion.ipynb
 # 11. Créditos
 
 Proyecto desarrollado por:
-#
+
 **Pablo Anegon Nuñez 100472728** 
 
 **Mateo Tode Ceballos 100537530**
