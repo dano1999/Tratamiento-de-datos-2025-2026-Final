@@ -10,11 +10,6 @@ Máster en Ingeniería de Telecomunicación (UC3M), curso 2025–2026.
 
 **Daniel Bahrami Planchuelo 100384032**
 
-
-> **Nota sobre métricas:** el dataset está fuertemente desbalanceado hacia `comment`.  
-> Por ello, la **accuracy** puede ser engañosa (una baseline de “siempre comment” ya logra ~0.84).  
-> En la discusión se enfatiza también el comportamiento en clases minoritarias y el *classification report*.
-
 ---
 
 # 1. Introducción
