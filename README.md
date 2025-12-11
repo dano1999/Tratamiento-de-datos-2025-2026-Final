@@ -3,17 +3,6 @@
 
 Proyecto desarrollado para la asignatura **Tratamiento de Datos / Text Data**  
 Máster en Ingeniería de Telecomunicación (UC3M), curso 2025–2026.
-#
-**Pablo Anegon Nuñez 100472728** 
-
-**Mateo Tode Ceballos 100537530**
-
-**Daniel Bahrami Planchuelo 100384032**
-
-
-> **Nota sobre métricas:** el dataset está fuertemente desbalanceado hacia `comment`.  
-> Por ello, la **accuracy** puede ser engañosa (una baseline de “siempre comment” ya logra ~0.84).  
-> En la discusión se enfatiza también el comportamiento en clases minoritarias y el *classification report*.
 
 ---
 
@@ -120,11 +109,6 @@ Tratamiento-de-datos-2025-2026/
 │       └── rumoureval2019_test.csv
 ├── notebooks/
 │   └── Knn_3_modelos_vectorizacion.ipynb
-├── results/                      # Métricas y tablas
-├── scripts/
-│   ├── run.py
-├── src/
-│   ├──main.py
 └── README.md
 ```
 
@@ -138,22 +122,26 @@ Tratamiento-de-datos-2025-2026/
 
 ## 5.2 Instalación
 
+> Este repositorio no incluye `requirements.txt` para mantener la entrega mínima.  
+> Si es necesario reproducir desde cero, un conjunto típico de dependencias es:
+
 ```bash
-python -m venv rumourenv
-source rumourenv/bin/activate           # Windows: rumourenv\Scripts\activate
-pip install -r requirements.txt
+pip install numpy pandas scikit-learn gensim sentence-transformers datasets
 ```
 
 ## 5.3 Ejecución
 
-Experimentos completos desde el cuaderno:
-
-```bash
-jupyter notebook Knn_3_modelos_vectorizacion.ipynb
-```
-
-> Aviso (Jupyter): puede aparecer `TqdmWarning: IProgress not found` si no están instalados/actualizados `ipywidgets` y Jupyter.  
-> No afecta al entrenamiento, solo a la barra de progreso.
+1. Lanzar Jupyter:
+   ```bash
+   jupyter notebook
+   ```
+2. Abrir `Knn_3_modelos_vectorizacion.ipynb`.
+3. Ejecutar las celdas en orden (o **Kernel → Restart & Run All**).
+4. El notebook imprime:
+   - distribución de clases,
+   - resultados por modelo,
+   - *classification reports*,
+   - resumen final de métricas.
 
 ---
 
@@ -335,4 +323,10 @@ jupyter notebook Knn_3_modelos_vectorizacion.ipynb
 
 # 11. Créditos
 
-Proyecto desarrollado por el grupo de **Tratamiento de Datos / Text Data (UC3M, 2025–2026)**.
+Proyecto desarrollado por:
+
+**Pablo Anegon Nuñez 100472728** 
+
+**Mateo Tode Ceballos 100537530**
+
+**Daniel Bahrami Planchuelo 100384032**
