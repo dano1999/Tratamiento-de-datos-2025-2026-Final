@@ -111,22 +111,13 @@ Tratamiento-de-datos-2025-2026/
 │       ├── rumoureval2019_train.csv
 │       ├── rumoureval2019_val.csv
 │       └── rumoureval2019_test.csv
-├── figures/                      # Gráficas generadas
 ├── notebooks/
 │   └── Knn_3_modelos_vectorizacion.ipynb
 ├── results/                      # Métricas y tablas
 ├── scripts/
-│   ├── train_baselines.py
-│   ├── train_pytorch.py
-│   └── train_transformer.py
+│   ├── run.py
 ├── src/
-│   ├── preprocessing.py
-│   ├── vectorizers.py
-│   ├── models_sklearn.py
-│   ├── model_pytorch.py
-│   └── model_transformer.py
-├── requirements.txt
-├── notas.txt
+│   ├──main.py
 └── README.md
 ```
 
