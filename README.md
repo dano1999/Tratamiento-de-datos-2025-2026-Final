@@ -150,6 +150,7 @@ pip install numpy pandas scikit-learn gensim sentence-transformers datasets matp
    - resumen final de métricas.
 
 **Usando los Scripts**
+
 El projecto se puede ejecutar desde un Entorno de desarrollo integrado (IDE) , los usado han sido VSCode y pycharm.
 Tendremo que tener un interprete python acorde con las especificaciones anteriormente mencionadas y instalar los paquetes (librerias necesarias).
 Para ejecutar desde el IDE simplemente correrremos el unico script del proyecto presente en la carpeta *scripts* llamado *project_run.py*
