@@ -109,6 +109,10 @@ Tratamiento-de-datos-2025-2026/
 │       └── rumoureval2019_test.csv
 ├── notebooks/
 │   └── Knn_3_modelos_vectorizacion.ipynb
+├── scripts/
+│   └── project_run.py
+├── src/
+│   └── project_run.py
 └── README.md
 ```
 
@@ -126,10 +130,12 @@ Tratamiento-de-datos-2025-2026/
 > Si es necesario reproducir desde cero, un conjunto típico de dependencias es:
 
 ```bash
-pip install numpy pandas scikit-learn gensim sentence-transformers datasets
+pip install numpy pandas scikit-learn gensim sentence-transformers datasets matplotlib
 ```
 
 ## 5.3 Ejecución
+
+**Usando el notebook de Jupyter**
 
 1. Lanzar Jupyter:
    ```bash
@@ -142,6 +148,15 @@ pip install numpy pandas scikit-learn gensim sentence-transformers datasets
    - resultados por modelo,
    - *classification reports*,
    - resumen final de métricas.
+
+**Usando los Scripts**
+El projecto se puede ejecutar desde un Entorno de desarrollo integrado (IDE) , los usado han sido VSCode y pycharm.
+Tendremo que tener un interprete python acorde con las especificaciones anteriormente mencionadas y instalar los paquetes (librerias necesarias).
+Para ejecutar desde el IDE simplemente correrremos el unico script del proyecto presente en la carpeta *scripts* llamado *project_run.py*
+
+> Adicionalmente si se quiere ejecutar en un CMD tendriamos que tener en el equipo las librerias necesarias anteriormente mencionadas
+> Navegar hasta la carpeta *scripts* y abrir un CMD dentro de esta en el que ejecutaremos el siguiente comando *python project_run.py* 
+> Probablemente haya problemas a la hora de la representacion de las graficas ya que la libreria **matplotlib** suele tener problemas al lanzar graficas desde el cmd.
 
 ---
 
@@ -178,6 +193,7 @@ source_text [SEP] reply_text
 
 # 7. Resultados (reales)
 
+
 ## 7.1 Baseline de mayoría (always `comment`)
 - Accuracy en test: **0.8388**
 
@@ -192,8 +208,8 @@ source_text [SEP] reply_text
 - Accuracy en test: **0.8299**
 
 ### Word2Vec + KNN
-- Mejor k en validación: **7** (acc val = 0.8097)
-- Accuracy en test: **0.8364**
+- Mejor k en validación: **9** (acc val = 0.8125)
+- Accuracy en test: **0.8370**
 
 ### Sentence-BERT + KNN
 - Mejor k en validación: **9** (acc val = 0.8035)
@@ -204,7 +220,7 @@ source_text [SEP] reply_text
 | Representación | k óptimo | Acc. validación | Acc. test |
 |---------------|---------:|----------------:|----------:|
 | TF–IDF        | 9        | 0.7903          | 0.8299    |
-| Word2Vec      | 7        | 0.8097          | 0.8364    |
+| Word2Vec      | 9        | 0.8125          | 0.8370    |
 | Sentence-BERT | 9        | 0.8035          | 0.8304    |
 
 > Observación: en KNN, aunque la accuracy es alta, el *classification report* indica que el modelo tiende a predecir casi siempre `comment`, dejando f1≈0 en clases minoritarias.
@@ -215,38 +231,38 @@ source_text [SEP] reply_text
 
 ### TF–IDF + CNN
 - Mejor acc validación: **0.8153**
-- Accuracy test: **0.8012**
+- Accuracy test: **0.8299**
 
 ### Word2Vec + CNN (mejorada)
-- Mejor acc validación: **0.7153**
-- Accuracy test: **0.5946**
+- Mejor acc validación: **0.7243**
+- Accuracy test: **0.7003**
 - Mejora cualitativa: ya aparecen predicciones en `deny` y `query`, aunque el rendimiento global baja.
 
 ### Sentence-BERT + CNN
 - Mejor acc validación: **0.8125**
-- Accuracy test: **0.7373**
+- Accuracy test: **0.7666**
 - *Classification report* muestra f1 no nulo en minoritarias (aunque sigue siendo bajo).
 
 **Resumen CNN:**
 
 | Representación | Mejor acc. val | Acc. test |
 |---------------|----------------:|----------:|
-| TF–IDF + CNN  | 0.8153          | 0.8012    |
-| Word2Vec + CNN (mejorada) | 0.7153 | 0.5946 |
-| Sentence-BERT + CNN | 0.8125 | 0.7373 |
+| TF–IDF + CNN  | 0.8153          | 0.8299   |
+| Word2Vec + CNN (mejorada) | 0.7243 | 0.7003 |
+| Sentence-BERT + CNN | 0.8125 | 0.7666 |
 
 ---
 
 ## 7.4 Transformer fine-tuned (DistilBERT)
 
-- Mejor acc validación: **0.8299**
-- Accuracy test: **0.8239**
+- Mejor acc validación: **0.8264**
+- Accuracy test: **0.8251**
 
 *Classification report (TEST) - resumen:*
-- `comment`: precision 0.8531, recall 0.9552, f1 0.9013
-- `deny`: precision 0.3333, recall 0.0700, f1 0.1157
-- `query`: precision 0.3827, recall 0.4697, f1 0.4218
-- `support`: precision 0.0000, recall 0.0000, f1 0.0000
+- `comment`: precision 0.8516, recall 0.9601, f1 0.9026
+- `deny`: precision 0.2500, recall 0.0500, f1 0.0833
+- `query`: precision 0.4286, recall 0.4091, f1 0.4186
+- `support`: precision 0.1250, recall 0.0096, f1 0.0179
 
 > Aunque la accuracy no supera a la baseline de mayoría, este modelo es el que mejor detecta `query` (recall ~0.47) y presenta un comportamiento más útil para estudiar polarización (clases minoritarias).
 
@@ -254,17 +270,17 @@ source_text [SEP] reply_text
 
 ## 7.5 Extensión: baseline léxica sencilla
 
-- Accuracy baseline léxica (test): **0.3684**
+- Accuracy baseline léxica + URL (test): **0.5624**
 
 *Classification report (TEST) - resumen:*
-- `comment`: recall 0.3587, f1 0.5025
-- `deny`: recall 0.5100, f1 0.3259
-- `query`: recall 0.8939, f1 0.1462
-- `support`: recall 0.0288, f1 0.0268
+- `comment`: f1 0.7196
+- `deny`: f1 0.1770
+- `query`: f1 0.2024
+- `support`: f1 0.1565
 
 Interpretación:
-- Muy buena detectando `query` (alto recall), pero con baja precisión (muchos falsos positivos).
-- Baseline interpretable útil para comparar contra modelos aprendidos.
+- Mejora sustancial frente a la baseline léxica simple.
+- Mantiene interpretabilidad y capta señales superficiales (`query` y `deny`), aunque con menor rendimiento que los modelos entrenados.
 
 ---
 
@@ -273,15 +289,19 @@ Interpretación:
 | Modelo | Acc. test |
 |-------|----------:|
 | Baseline mayoría (`comment`) | **0.8388** |
-| TF–IDF + KNN | 0.8299 |
-| Word2Vec + KNN | 0.8364 |
+| Word2Vec + KNN | 0.8370 |
 | Sentence-BERT + KNN | 0.8304 |
-| TF–IDF + CNN | 0.8012 |
-| Word2Vec + CNN (mejorada) | 0.5946 |
-| Sentence-BERT + CNN | 0.7373 |
-| DistilBERT fine-tuned | 0.8239 |
-| Baseline léxica (extensión) | 0.3684 |
+| TF–IDF + KNN | 0.8299 |
+| TF–IDF + CNN | 0.8299 |
+| DistilBERT fine-tuned | 0.8251 |
+| Sentence-BERT + CNN | 0.7666 |
+| Word2Vec + CNN (mejorada) | 0.7003 |
+| Baseline léxica + URL | 0.5624 |
 
+
+>Acerca de discrepancias entre el codigo y el informe de resultados en funcion del hardware de la maquina los resultados pueden variar ya que se ha
+>probado en entornos online como google colab como en varios entornos locales con diferentes specs hardware y los resultados variaban.
+>Como criterio hemos presentado en este informe de resultados los mejores datos que se han obtenido.
 ---
 
 # 8. Discusión
